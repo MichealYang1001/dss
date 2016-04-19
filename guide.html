@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="styles/result/theme.css">
+    <link rel="stylesheet" href="styles/result/layout.css">
+    <link rel="stylesheet" href="styles/result/module.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <title>相关论文</title>
+</head>
+<body>
+<div id="nvl">
+    <div class="wrapper">
+        <div class="search-nvl">
+            <a class="logo" href="index.html">
+                <img src="images/logo-search.png" alt="logo">
+            </a>
+        </div>
+        <div id="search-area" ng-controller="GuideSerCtrl">
+            <form class="input" name="input_form"
+                  serprompt eventfn="promptEvent">
+                <input  class="input-text" ng-model="inputValue"
+                        type="text" autocomplete="off">
+                <div class="fl" ng-controller="ProductController" onselectstart="return false">
+                    <div class="opt-product fl"  selproduct-search selproduct="product" seldrop>
+                        <span ng-bind="product.text+'数据'"></span>
+                        <ul class="dn">
+                            <li ng-repeat="pro in products" ng-show="pro!==product" data-id={{pro.id}}
+                                ng-click="selProduct(pro)"
+                                ng-bind="pro.text+'数据'"></li>
+                        </ul>
+                    </div>
+                    <div class="opt-trade fl" ng-class="{'dn':product.id!==8}" seldrop >
+                        <span ng-bind="trade.text"></span>
+                        <ul class="dn">
+                            <li ng-repeat="tra in trades" ng-show="tra!==trade" ng-bind="tra.text"
+                                ng-click="selTrade(tra)">
+                        </ul>
+                    </div>
+                </div>
+                <div class="input-btn">
+                    <div class="input-btn-img" ng-class="{'input-btn-ok': inputValue}"></div>
+                </div>
+            </form>
+        </div>
+        <!--<div id="teach-area"></div>-->
+        <div id="login-area" ng-controller="LoginCtrl">
+            <div class="login-logined" ng-bind="username" ng-show="isLogined"></div>
+            <div class="login-logout" ng-show="isLogined" ng-bind="'退出'" ng-click="logout()"></div>
+            <div class="login-btn" ng-show="!isLogined" ng-click="login()">登录</div>
+        </div>
+    </div>
+</div>
+<div id="content" >
+    <div class="wrapper">
+        <div id="guide-data" ng-controller="GuideCtrl" loading="loadingend">
+            <p class="guide-back" ng-click="returnBack()">返回搜索结果</p>
+            <div id="guide-main">
+                <div ng-controller="FilterCtrl">
+                    <div id="guide-type">
+                        <ul>
+                            <li ng-click="toggleStats(1)" ng-class="{'recommend-sel':tpid==1}">期刊</li>
+                            <li ng-click="toggleStats(2)" ng-class="{'recommend-sel':tpid==2}">学位</li>
+                            <li ng-click="toggleStats(3)" ng-class="{'recommend-sel':tpid==3}">会议</li>
+                        </ul>
+                    </div>
+                    <!--<div id="guide-sort">-->
+                        <!--<div class="guide-sort-list" sort sortevent="sortEvent"></div>-->
+                        <!--<div class="guide-sort-head">排序:</div>-->
+                    <!--</div>-->
+                </div>
+                <div id="guide-content">
+                    <div class="total">共有&nbsp;{{total}}&nbsp;条结果</div>
+                    <div class="result" ng-repeat="guide in guides">
+                        <h3 class="result-tit">
+                            <a href="{{guide.url}}" target='_blank' ng-bind-html="renderHtml(guide.title)"></a>
+                        </h3>
+                        <div  class="result-profile" ng-show="guide.profile">
+                            <span class="result-profile-name">摘要：</span>
+                            <span class="result-profile-content" ng-bind-html="renderHtml(guide.profile)"></span>
+                        </div>
+                        <div  class="result-keywords" ng-show="guide.keywords">
+                            <span  class="result-keywords-name">关键词：</span>
+                            <span  class="result-keywords-content" ng-bind="guide.keywords"></span>
+                        </div>
+                        <div class="blank" ng-show="!guide.keywords && !guide.profile"></div>
+                        <div class="result-appendix" ng-show="guide.appendix">
+                            <div  class="result-appendix-mark">
+                                <span class="mark-name" ng-bind="'['+guide.tpname+']'"></span>
+                                <span class="mark-attr" ng-repeat="orz in guide.orz" ng-bind="orz"></span>
+                            </div>
+                            <div class="result-appendix-scan" ng-bind="guide.appendix.scan"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-page">
+                        <span class="page-previous" ng-class="{'selectable':page != 0}"
+                              ng-click="loadData(page-1)">
+                        </span>
+                    <div class="page">
+                            <span class="page-option" ng-repeat="num in pageAry"
+                                  ng-class="{'current-page':page+1 == num,'dots':num==1&&pageAry[$index+1]>2}"
+                                  ng-click="loadData(num-1)" ng-bind="num">
+                            </span>
+                    </div>
+                        <span class="page-next" ng-class="{'selectable':page+1 != maxpage&&maxpage!=0}"
+                              ng-click="loadData(page+1)"></span>
+                </div>
+            </div>
+            <div class="related" ng-show="relates.length!==0">
+                <span>相关推荐</span>
+                <table>
+                    <tbody class="related-table">
+                    <tr ng-repeat="row in relates">
+                        <td ng-repeat="col in row track by $index">
+                            <a href="javascript:;" ng-bind="col"
+                               ng-click="relatesClick(col)">
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div class="footer-top">
+        <div class="wrapper">
+            <div class="footer-top-left">
+                <p class="footer-top-left-p1">公司介绍</p>
+                <p class="footer-top-left-p2">北京福卡斯特信息技术有限公司是国内专业的数据、信息与软件服务提供商，
+                    是一家拥有先进软件开发技术和自主知识
+                    产权的高科技企业。公司致力于提供集数据、分析建模和功能于一体的专业化软件解决方案，并处于国际领先地位。</p>
+            </div>
+            <div class="footer-top-middle">
+                <p>联系我们</p>
+                <ul>
+                    <li>联系电话：<span>&nbsp010-85786021</span></li>
+                    <li>传&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp真：<span>&nbsp010-85786020</span></li>
+                    <li>客服邮箱：<span>&nbspservice@dfinder.cn</span></li>
+                    <li>地&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp址：
+                        <span>&nbsp北京市海淀区知春路9号坤讯大厦15层1502室</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-top-right">
+                <p>关注我们</p>
+                <img src="images/wx.jpg">
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="wrapper">
+            <!--<ul>-->
+                <!--<li><a class="" href="#">公司介绍</a></li>-->
+                <!--<li><a class="" href="#">联系我们</a></li>-->
+                <!--<li><a class="" href="#">使用帮助</a></li>-->
+                <!--<li><a class="" href="#">案例分析</a></li>-->
+                <!--<li><a class="" href="#">招贤纳士</a></li>-->
+            <!--</ul>-->
+            <span>
+				Copyright @Dfinder. All Rights Reserved
+				&nbsp;&nbsp;&nbsp;&nbsp;京ICP备09019565号-2
+			</span>
+        </div>
+    </div>
+</div>
+<script src="bower_components/requirejs/require.js"
+        data-main="scripts/main"></script>
+</body>
+</html>

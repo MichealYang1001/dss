@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="styles/result/theme.css">
+    <link rel="stylesheet" href="styles/result/layout.css">
+    <link rel="stylesheet" href="styles/result/module.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <title>搜索结果</title>
+</head>
+<body>
+<div id="nvl">
+    <div class="wrapper">
+        <div class="search-nvl">
+            <a class="logo" href="index.html">
+                <img src="images/logo-search.png" alt="logo">
+            </a>
+        </div>
+        <div id="search-area" ng-controller="ListSerCtrl">
+            <form class="input" name="input_form"
+                  serprompt eventfn="promptEvent">
+                <input  class="input-text" ng-model="inputValue"
+                        type="text" autocomplete="off">
+                <div class="fl" ng-controller="ProductController" onselectstart="return false">
+                    <div class="opt-product fl"  selproduct-search selproduct="product" seldrop>
+                        <span ng-bind="product.text+'数据'"></span>
+                        <ul class="dn">
+                            <li ng-repeat="pro in products" ng-show="pro!==product" data-id={{pro.id}} ng-click="selProduct(pro)"
+                                ng-bind="pro.text+'数据'">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="opt-trade fl" ng-class="{'dn':product.id!==8}" seldrop >
+                        <span ng-bind="trade.text"></span>
+                        <ul class="dn">
+                            <li ng-repeat="tra in trades" ng-show="tra!==trade" ng-bind="tra.text" ng-click="selTrade(tra)">
+                        </ul>
+                    </div>
+                </div>
+                <div class="input-btn">
+                    <div class="input-btn-img" ng-class="{'input-btn-ok': inputValue}"></div>
+                </div>
+            </form>
+        </div>
+        <!--<div id="teach-area"></div>-->
+        <div id="login-area" ng-controller="LoginCtrl">
+            <div class="login-logined" ng-bind="username" ng-show="isLogined"></div>
+            <div class="login-logout" ng-show="isLogined" ng-bind="'退出'" ng-click="logout()"></div>
+            <div class="login-btn" ng-show="!isLogined" ng-click="login()">登录</div>
+        </div>
+    </div>
+</div>
+<div id="content">
+    <div class="wrapper" id="page-data" loading="loadingend" ng-controller="PageDataCtrl">
+        <div id="page-data-left">
+            <div id="page-content">
+                <div ng-controller="FilterCtrl">
+                    <div class="search-type" >
+                        <ul filtertype reset="isReset">
+                            <li ng-click="Filter(-1)" class="currenttype">综合</li>
+                            <li ng-click="Filter(1)">指标</li>
+                            <li ng-click="Filter(2)">表格</li>
+                            <!--<li >分析报告</li>-->
+                        </ul>
+                    </div>
+                    <div class="search-filter">
+                        <div class="search-filter-head" ng-bind="'筛选：'"></div>
+                        <div class="search-filter-list" downgroup
+                             reset="isReset" groupdata="dropDownData" filterevent="filterEvent">
+                        </div>
+                        <!--<div class="search-sort-list" sort sortevent="filterEvent"></div>-->
+                        <!--<div class="search-sort-head">排序:</div>-->
+                    </div>
+                </div>
+                <div ng-show="results&&results.length!==0">
+                    <div class="search-content">
+                        <div class="total">共有&nbsp;<span ng-bind="total"></span>&nbsp;条结果</div>
+                        <div class="result" ng-repeat="result in results">
+                            <h3 class="result-tit" ng-controller="ProductController">
+                                <i ng-if="result.rscclc == 2" ng-bind="'【表格】'"></i>
+                                <i ng-if="result.rscclc == 1&&result.parameter.cubeID != 4&&result.parameter.cubeID
+                                != 5 &&result.parameter.cubeID != 7" ng-bind="'【指标】'"></i>
+                                <i ng-if="result.rscclc == 1&&result.parameter.cubeID == 4" ng-bind="'【商品】'"></i>
+                                <i ng-if="result.rscclc == 1&&result.parameter.cubeID == 5" ng-bind="'【行业】'"></i>
+                                <i ng-if="result.rscclc == 1&&result.parameter.cubeID == 7" ng-bind="'【指数】'"></i>
+                                <a href="javascript:;"
+                                   ng-bind-html="renderHtml(result.title)"
+                                   ng-click="resultClick(result)">
+                                </a>
+                            </h3>
+                            <p class="result-brief" ng-show="result.profile">
+                                <span class="result-attr-head" ng-bind="'统计要素:'"></span>
+                                <span ng-bind-html="renderHtml(result.profile)"></span></p>
+                            <div class="blank-space-14" ng-show="!result.profile"></div>
+                            <div class="fl result-attrs">
+                                <div class="fl result-attr" ng-show="result.appendix.regclc.length!==0&&result.appendix.regclc">
+                                    <span class="result-attr-head" ng-bind="'地区:'"></span>
+                                    <span class="result-attr-content" ng-bind="result.appendix.regclc"></span>
+                                </div>
+                                <div class="fl result-attr" ng-show="result.appendix.induclc.length!==0&&result.appendix.induclc">
+                                    <span class="result-attr-head" ng-bind="'行业:'"></span>
+                                    <span class="result-attr-content" ng-bind="result.appendix.induclc"></span>
+                                </div>
+                                <div class="fl result-attr" ng-show="(result.appendix.source.length!==0&&result.appendix.source)||result.appendix.almanac">
+                                    <span class="result-attr-head" ng-bind="'来源:'"></span>
+                                    <span class="result-attr-content result-attr-source" ng-show="result.appendix.almanac"
+                                        ng-bind="result.appendix.almanac"></span>
+                                    <span class="result-attr-content" ng-show="result.appendix.source.length!==0&&result.appendix.source"
+                                         ng-bind="result.appendix.source"></span>
+                                </div>
+                                <div class="fl result-attr" ng-show="result.appendix.organize&&result.appendix.organize.length!==0">
+                                    <span class="result-attr-head" ng-bind="'机构:'"></span>
+                                    <span class="result-attr-content" ng-bind="result.appendix.organize"></span>
+                                </div>
+                                <div class="fl result-attr" ng-show="result.appendix.length!==0&&result.appendix.frequency">
+                                    <span class="result-attr-head" ng-bind="'频度:'"></span>
+                                    <span class="result-attr-content" ng-bind="result.appendix.frequency"></span>
+                                </div>
+                                <div class="fl result-attr" ng-show="result.appendix.hsversion&&result.appendix.hsversion.length!==0">
+                                    <span class="result-attr-head" ng-bind="'HS版本:'"></span>
+                                    <span class="result-attr-content" ng-bind="result.appendix.hsversion"></span>
+                                </div>
+                                <div class="fl result-attr" ng-show="result.appendix.length!==0&&result.appendix.datavolumn">
+                                    <span class="result-attr-head" ng-bind="'数据量:'"></span>
+                                    <span class="result-attr-content" ng-bind="result.appendix.datavolumn"></span>
+                                </div>
+                            </div>
+                            <span class="result-download" ng-bind="result.appendix.download"></span>
+                            <span class="result-scan" ng-bind="result.appendix.scan"></span>
+                        </div>
+                    </div>
+                    <div class="search-page">
+                        <span class="page-previous" ng-class="{'selectable':page != 0}"
+                              ng-click="loadData(page-1)">
+                        </span>
+                        <div class="page">
+                            <span class="page-option" ng-repeat="num in pageAry"
+                                  ng-class="{'current-page':page+1 == num,'dots':num==1&&pageAry[$index+1]>2}"
+                                  ng-click="loadData(num-1)" ng-bind="num">
+                            </span>
+                        </div>
+                        <span class="page-next" ng-class="{'selectable':page+1 != maxpage&&maxpage!=0}"
+                              ng-click="loadData(page+1)"></span>
+                    </div>
+                </div>
+                <div ng-show="!(results&&results.length!==0)&&loadingend==true" ng-cloak class="resultless">
+                    <span ng-bind="'抱歉, 没有找到相关的结果, 请'"></span>
+                    <span ng-bind="'更换筛选条件'"></span>
+                    <span ng-bind="'或'"></span>
+                    <span ng-bind="'输入其他关键词'"></span>
+                </div>
+            </div>
+            <div class="related" ng-show="relates.length!==0">
+                <span>相关推荐</span>
+                <table>
+                    <tbody class="related-table">
+                    <tr ng-repeat="row in relates">
+                        <td ng-repeat="col in row track by $index">
+                            <a href="javascript:;" ng-bind="col"
+                               ng-click="relatesClick(col)">
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="page-data-right">
+            <div class="recommend-box" ng-repeat="st in stats" ng-show="st.itemLst.length!==0">
+                <div>
+                    <p class="recommend-box-title"ng-bind="st.tpname"></p>
+                    <i class="triangle"></i>
+                </div>
+                <ul class="recommend-box-list" >
+                    <li ng-repeat="item in st.itemLst"><a target="_blank" href="{{item.url}}">
+                        <span ng-bind-html="renderHtml(item.title)"></span></a>
+                    </li>
+                </ul>
+                <p class="recommend-box-total" ng-click="GetGuide(st.tpid)">共有&nbsp;&nbsp;
+                    <span ng-bind="st.tpcount"></span>&nbsp;结果<img src="images/more.png">
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div class="footer-top">
+        <div class="wrapper">
+            <div class="footer-top-left">
+                <p class="footer-top-left-p1">公司介绍</p>
+                <p class="footer-top-left-p2">北京福卡斯特信息技术有限公司是国内专业的数据、信息与软件服务提供商，是一家拥有先进软件开发技术和自主知识
+                    产权的高科技企业。公司致力于提供集数据、分析建模和功能于一体的专业化软件解决方案，并处于国际领先地位。</p>
+            </div>
+            <div class="footer-top-middle">
+                <p>联系我们</p>
+                <ul>
+                    <li>联系电话：<span>&nbsp010-85786021</span></li>
+                    <li>传&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp真：<span>&nbsp010-85786020</span></li>
+                    <li>客服邮箱：<span>&nbspservice@dfinder.cn</span></li>
+                    <li>地&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp址：<span>&nbsp北京市海淀区知春路9号坤讯大厦15层1502室</span></li>
+                </ul>
+            </div>
+            <div class="footer-top-right">
+                <p>关注我们</p>
+                <img src="images/wx.jpg">
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="wrapper">
+            <!--<ul>-->
+                <!--<li><a class="" href="#">公司介绍</a></li>-->
+                <!--<li><a class="" href="#">联系我们</a></li>-->
+                <!--<li><a class="" href="#">使用帮助</a></li>-->
+                <!--<li><a class="" href="#">案例分析</a></li>-->
+                <!--<li><a class="" href="#">招贤纳士</a></li>-->
+            <!--</ul>-->
+            <span>
+				Copyright @Dfinder. All Rights Reserved
+				&nbsp;&nbsp;&nbsp;&nbsp;京ICP备09019565号-2
+			</span>
+        </div>
+    </div>
+</div>
+<script src="bower_components/requirejs/require.js"
+        data-main="scripts/main"></script>
+</body>
+</html>

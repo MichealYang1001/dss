@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+	<meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="Dfinder, 首页, 数据发现, 数据分析" >
+    <meta name="description" content="Dfinder, 数据发现分析平台,海量数据资源,数据分析建模" >
+    <link rel="stylesheet" href="styles/index/module.css">
+	<link rel="stylesheet" href="styles/index/layout.css">
+	<link rel="stylesheet" href="styles/index/theme.css">
+	<link rel="stylesheet" href="styles/base.css">
+	<title>DFINDER首页</title>
+</head>
+<body  onload="document.getElementById('serInput').focus();">
+<!--[if lt IE 9]>
+<p style="text-align: center">您正在用 <strong>过时的</strong> 浏览器，请
+    <a href="http://browsehappy.com/" style="color: red;">升级您的浏览器</a> 或
+    <a href="http://google-chrome-frame.cn.uptodown.com/download" style="color: red;">激活谷歌浏览器框架</a>
+    以提高您的浏览体验。</p>
+<![endif]-->
+    <div id="nvl">
+        <div  class="tablist">
+            <a href="#" class="current-option">数据发现</a>
+            <a href="http://dps.dfinder.cn/platform.html" target="_blank">分析平台</a>
+        </div>
+        <a class="trial-btn" href="mailto:service@dfinder.cn"
+             onselectstart="return false">申请试用</a>
+        <div id="login-area" ng-controller="LoginCtrl">
+            <div class="login-logined" ng-bind="username" ng-show="isLogined"></div>
+            <div class="login-logout" ng-show="isLogined" ng-bind="'退出'" ng-click="logout()"></div>
+            <div class="login-btn"  ng-show="!isLogined" ng-click="login()">登录</div>
+        </div>
+    </div>
+    <div id="main">
+        <div class="logo"></div>
+        <div ng-controller="IndexSerCtrl">
+            <div class="opt-product"  ng-controller="ProductController">
+                <div selproduct-index seproduct="product">
+                    <a ng-repeat="pro in products" ng-click="selProduct(pro)" ng-bind="pro.text"
+                       ng-class="{'product-sel': pro.id == product.id}"></a>
+                </div>
+            </div>
+            <div class="ser-form" serprompt eventfn="promptEvent">
+                <input  id="serInput" ng-model="inputValue"
+                        type="text"  autocomplete="off">
+                <div class="opt-trade dn" seldrop ng-controller="ProductController" onselectstart="return false">
+                    <span ng-bind="trade.text"></span>
+                    <ul>
+                        <li ng-repeat="tra in trades" ng-show="tra!==trade" ng-bind="tra.text" ng-click="selTrade(tra)">
+                    </ul>
+                </div>
+                <div class="input-btn">
+                    <div class="input-btn-img" ng-class="{'input-btn-ok': inputValue}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="publicBeta">
+        <a href=""></a>
+        <img src="images/laba1.png" alt=""/>
+        <a href="introduction.html" target="_blank">DFINDER简介</a>
+        <img src="images/laba2.png" alt=""/>
+    </div>
+    <div id="footer">
+        Copyright @Dfinder. All Rights Reserved&nbsp;&nbsp;&nbsp;&nbsp;京ICP备09019565号-2
+    </div>
+    <script src="bower_components/requirejs/require.js"
+            data-main="scripts/main"></script>
+</body>
+</html>
