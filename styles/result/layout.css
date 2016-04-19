@@ -1,0 +1,82 @@
+body{
+    position: relative;
+}
+#nvl{
+    height: 60px;
+    position: relative;
+}
+.wrapper{
+    margin:0 auto;
+    width: 1100px;
+}
+.logo{
+    float:left;
+    margin-top:17px;
+}
+#search-area{
+    height:36px;
+    float:left;
+    margin:12px 13px;
+}
+#content{
+    padding-top:25px;
+    padding-bottom: 60px;
+}
+#page-data{
+    height:100%;
+    overflow: hidden;
+}
+#page-data-left{
+    float: left;
+    width:720px;
+}
+.search-content{
+    position: relative;
+}
+.search-content .total{
+    position: absolute;
+    top:-66px;
+    right:40px;
+}
+
+#page-data-right{
+    float: left;
+    width:220px;
+    margin-left: 20px;
+}
+.footer-top{
+    height:200px;
+    width: 100%;
+}
+#guide-data{
+    position: relative;
+    width: 720px;
+    margin-top: 30px;
+}
+.loading {
+    position: absolute;
+    z-index: 900;
+    overflow: hidden;
+}
+.loading:before {
+    width: 57px;
+    height: 58px;
+    display: block;
+    position: fixed;
+    margin-top: -29px;
+    margin-left: -29px;
+    top: 50%;
+    left: 50%;
+}
+#guide-content{
+    padding-top: 5px;
+    clear: both;
+    position: relative;
+}
+#guide-content .total {
+    position: absolute;
+    top:-31px;
+    right: 40px;
+    font-size: 12px;
+    color: #A3A4A5;
+}

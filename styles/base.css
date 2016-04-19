@@ -1,0 +1,32 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Microsoft Yahei', 'Simsun', Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+}
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust:100%; /* 自动调整 */
+    -webkit-text-size-adjust: 100%;
+}
+ul{
+    list-style:none;
+}
+a{
+    text-decoration: none;
+}
+img{
+    border:0;
+}
+/*去除input获取焦点时的边框*/
+input:focus{
+    outline: none;
+}
+/*-清除谷歌浏览器下的 search 叉号*/
+input::-webkit-search-cancel-button{
+    display: none;
+}
+/*--清除IE下的 search 叉号*/
+input::-ms-clear{
+    display: none;
+}

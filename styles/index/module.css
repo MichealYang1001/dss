@@ -1,0 +1,136 @@
+.tablist a{
+    float: left;
+    margin-right:20px;
+}
+.login-btn,.trial-btn{
+    padding-top: 3px;
+    height: 24px;
+}
+#login-area,.trial-btn{
+    float: right;
+}
+#login-area{
+    margin-right:6px;
+}
+.login-btn,.login-logined,.login-logout{
+    display: inline-block;
+}
+.login-btn{
+    width: 48px;
+}
+.login-logined,.login-logout{
+    margin-top: 3px;
+    margin-right: 6px;
+}
+.trial-btn{
+    width: 66px;
+}
+.logo{
+    margin: 0 auto;
+    width: 300px;
+    position: relative;
+    left: 16px;
+    height: 70px;
+}
+.opt-product{
+    height: 42px;
+}
+.opt-product a{
+    margin: 8px 4px 12px 20px;
+    float: left;
+}
+.ser-form input{
+    display: block;
+    float:left;
+    height: 42px;
+    width:560px;
+    padding-left: 10px;
+}
+.opt-trade{
+    float: left;
+}
+.opt-trade span{
+    width: 130px;
+    height:42px;
+    line-height:42px;
+    display:block;
+    padding-right:15px;
+}
+.opt-trade ul {
+    width: 130px;
+    margin-top: -1px;
+}
+.opt-trade ul li{
+    cursor: pointer;
+    padding-right: 15px;
+    height:40px;
+    line-height:40px;
+}
+.input-btn{
+    float:left;
+}
+.input-btn,.input-btn-img{
+    height:42px;
+    width:80px;
+}
+.suggestion{
+    clear: both;
+    overflow: auto;
+    position:relative;
+    z-index:2;
+}
+.suglist{
+    display: inline-block;
+    min-width: 100%;
+}
+.suglist li {
+    padding: 0 10px;
+}
+/*问卷调查样式*/
+.questionnaire{
+     position: fixed;
+     right: 0;
+     top: 40%;
+ }
+ .questionnaire a{
+     display: inline-block;
+     box-sizing: border-box;
+     width: 50px;
+     height: 98px;
+     color: #ffffff;
+     font-size: 18px;
+     background: url("../../images/edit.png") #ff8585  no-repeat center top 5px;
+     padding-top: 45px;
+     border-radius: 2px;
+     text-align: center;
+     opacity: 0.5;
+ }
+ .questionnaire a:hover{
+     opacity: 0.6;
+ }
+
+.publicBeta{
+    margin-bottom: 70px;
+    width: 100%;
+    position: absolute;
+    bottom:0 ;
+    height: 24px;
+    line-height: 24px;
+    /*text-decoration: underline;*/
+    text-align: center;
+}
+.publicBeta img{
+    vertical-align: middle;
+}
+.publicBeta a{
+    margin-left: 10px;
+    margin-right: 10px;
+    text-decoration: underline;
+    display: inline-block;
+    /*height: 24px;*/
+    /*line-height: 24px;*/
+    /*border-bottom: 1px solid #e73e30;*/
+    font-size: 14px;
+    color: #e73e30;
+}
+

@@ -1,0 +1,134 @@
+.dn{
+    display: none;
+}
+.db{
+    display: block;
+}
+body{
+    background-color: #eef7ff;
+}
+.logo{
+    background: url("../../images/logo-home.png") no-repeat center center;
+}
+.logo:after{
+    position: relative;
+    left:86%;
+    top:30%;
+    content: url("../../images/beta.png");
+}
+.tablist a{
+    font-size: 14px;
+    color: #A3A4A5;
+}
+.tablist .current-option{
+    color: #ff8585;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #f6bec2;
+}
+.login-btn,.trial-btn {
+    cursor: pointer;
+    color: #3b9eff;
+    font-size: 11px;
+    border: 1px solid #87c4ff;
+    border-radius: 2px;
+    text-align: center;
+}
+.login-btn:hover,.trial-btn:hover{
+    color: #ffffff;
+    background-color: #3b9eff;
+    border: 1px solid #3b9eff;
+}
+.login-logined{
+    font-size: 11px;
+    color: #000000;
+}
+.login-logout{
+    cursor: pointer;
+    font-size: 11px;
+    color: #3b9eff;
+}
+.opt-product a{
+    cursor: pointer;
+    font-size: 16px;
+    color: #A3A4A5;
+}
+.opt-product .product-sel{
+    color: #3b9eff;
+}
+.ser-form{
+    text-align: center;
+    font-size: 18px;
+}
+.ser-form input:focus{
+    border-color: rgba(59,158,255,1.0);
+    opacity: 1.0;
+}
+.ser-form input{
+    font-size: 20px;
+    border-top: 1px solid rgba(59,158,255,0.9);
+    border-left: 1px solid rgba(59,158,255,0.9);
+    border-bottom: 1px solid rgba(59,158,255,0.9);
+    border-right: 0px;
+    color:#000000;
+    opacity: 0.9;
+}
+.opt-trade{
+    text-align: center;
+    font-size: 18px;
+}
+.opt-trade span{
+    color: #808080;
+    border: 1px solid #ff8585;
+    background: #ffffff url("../../images/xjt.png") no-repeat right center;
+    cursor: pointer;
+}
+.opt-trade ul {
+    background-color: #ffffff;
+    border: 1px solid #ff8585;
+    position: absolute;
+    z-index: 20;
+    display: none;
+}
+.opt-trade ul li {
+    color: #000000;
+}
+.opt-trade ul li:hover{
+    color: #ffffff;
+    background-color:#3a9eff;
+}
+.input-btn{
+    border:0px;
+    cursor: pointer;
+    background-color: #3b9eff;
+}
+.input-btn-img{
+    opacity: 0.5;
+    background-image:url('../../images/search-index.png') ;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.input-btn-ok{
+    opacity: 1.0;
+}
+.suggestion{
+    border-right: 1px solid #D3D7D9;
+    border-left: 1px solid #D3D7D9;
+    border-bottom: 1px solid #D3D7D9;
+    background-color:#ffffff;
+}
+.suglist .sugitem-over {
+    background-color: #F0F0F0;
+}
+.suglist li {
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 2.1em;
+    text-align: left;
+    cursor: pointer;
+}
+#footer {
+    font-size: 14px;
+    color: rgba(0,0,0,0.3);
+    text-align: center;
+}
+

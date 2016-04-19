@@ -1,0 +1,63 @@
+<div class="search-type">
+    <ul filtertype="" filterevent="filterEvent" class="ng-isolate-scope">
+        <li ng-click="Filter(-1)" class="currenttype">综合</li>
+        <li ng-click="Filter(1)">指标</li>
+        <li ng-click="Filter(2)">表格</li>
+        <!--<li >分析报告</li>-->
+    </ul>
+</div>
+<div class="search-filter">
+    <div class="search-filter-head">筛选：</div>
+    <div class="search-filter-list ng-isolate-scope" downgroup="" groupdata="dropDownData" filterevent="filterEvent">
+        <div class="dropdown ng-scope" ng-repeat="drop in groupdata">
+            <span class="dropdown-target ng-binding">频度</span>
+            <ul class="dropdown-list">
+                <li ng-class="{'dropdown-radio': drop.value == item.val}"
+                    ng-repeat="item in drop.item" class="ng-binding ng-scope dropdown-radio">所有</li>
+                <li ng-class="{'dropdown-radio': drop.value == item.val}"
+                    ng-repeat="item in drop.item" class="ng-binding ng-scope">年度</li>
+                <li ng-class="{'dropdown-radio': drop.value == item.val}"
+                    ng-repeat="item in drop.item" class="ng-binding ng-scope">季度</li>
+                <li ng-class="{'dropdown-radio': drop.value == item.val}"
+                    ng-repeat="item in drop.item" class="ng-binding ng-scope">月度</li>
+            </ul>
+        </div>
+        <div class="dropdown ng-scope" ng-repeat="drop in groupdata">
+            <span class="dropdown-target ng-binding">区域</span>
+            <ul class="dropdown-list">
+                <li ng-class="{'dropdown-radio': drop.value == item.val}"
+                    ng-repeat="item in drop.item" class="ng-binding ng-scope dropdown-radio">所有</li>
+                <li ng-class="{'dropdown-radio': drop.value == item.val}"
+                    ng-repeat="item in drop.item" class="ng-binding ng-scope">省级</li>
+                <li ng-class="{'dropdown-radio': drop.value == item.val}"
+                    ng-repeat="item in drop.item" class="ng-binding ng-scope">市级</li>
+                <li ng-class="{'dropdown-radio': drop.value == item.val}"
+                    ng-repeat="item in drop.item" class="ng-binding ng-scope">县级</li>
+            </ul>
+        </div>
+        <div class="dropdown ng-scope" ng-repeat="drop in groupdata">
+            <span class="dropdown-target ng-binding">行业分类</span>
+            <ul class="dropdown-list">
+                <li ng-class="{'dropdown-radio': drop.value == item.val}"
+                    ng-repeat="item in drop.item" class="ng-binding ng-scope dropdown-radio">所有</li>
+                <li ng-class="{'dropdown-radio': drop.value == item.val}"
+                    ng-repeat="item in drop.item" class="ng-binding ng-scope">门类</li>
+                <li ng-class="{'dropdown-radio': drop.value == item.val}"
+                    ng-repeat="item in drop.item" class="ng-binding ng-scope">大类</li>
+                <li ng-class="{'dropdown-radio': drop.value == item.val}"
+                    ng-repeat="item in drop.item" class="ng-binding ng-scope">中类</li>
+                <li ng-class="{'dropdown-radio': drop.value == item.val}"
+                    ng-repeat="item in drop.item" class="ng-binding ng-scope">小类</li>
+            </ul>
+        </div>
+    </div>
+    <div class="dropdown" ng-repeat="drop in groupdata">
+    <span class="dropdown-target">
+                {{drop.text || drop.label}}</span>
+   <ul class="dropdown-list">
+        <li ng-class="{'dropdown-radio': drop.value == item.val}"
+        ng-repeat="item in drop.item">{{item.text}}</li>
+        </ul></div>
+    <!--<div class="search-sort-list" sort sortevent="filterEvent"></div>-->
+    <!--<div class="search-sort-head">排序:</div>-->
+</div>

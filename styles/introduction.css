@@ -1,0 +1,75 @@
+body{
+    background-color: #eef7ff;
+}
+body,html{
+    height: 100%;
+}
+.wrapper,.leftside,.rightside{
+    height: auto;
+    min-height: 100%;
+}
+.wrapper{
+    overflow: hidden;
+    width: 860px;
+    margin: 0 auto;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+.leftside{
+    width: 620px;
+    float: left;
+    padding: 30px 40px 6180px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    margin-bottom: -6180px;
+    overflow: hidden;
+}
+.leftside h1{
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #3b9eff;
+}
+.leftside h1 span{
+    color: #e73e30;
+}
+.leftside h2{
+    font-size: 14px;
+    color: #3b9eff;
+}
+.leftside p{
+    margin-bottom: 20px;
+    color: #000000;
+    font-size: 14px;
+    line-height: 150%;
+}
+.leftside  .special{
+    margin-bottom: 30px;
+}
+.rightside{
+    box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    padding: 40px 0 6180px 30px;
+    float: left;
+    width: 240px;
+    background-color: #f6f6f6;
+    margin-bottom: -6180px;
+    overflow: hidden;
+}
+.rightside span{
+    margin-bottom: 15px;
+    display: block;
+    font-size: 14px;
+    color: #000000;
+}
+.rightside ul li{
+    /*float: left;*/
+    margin-bottom: 15px;
+    display: block;
+    font-size: 14px;
+    color: #3b9eff;
+}
+.rightside ul li a{
+    color: #3b9eff;
+    text-decoration: underline;
+}
+.rightside .download,.rightside .wx{
+    margin-top: 45px;
+}

@@ -1,0 +1,38 @@
+html,body{
+    height: 100%;
+}
+#nvl {
+    position: relative;
+    z-index: 2;
+    height: 45px;
+}
+#main{
+    padding-top: 85px;
+    overflow: hidden;
+}
+.tablist{
+    float: left;
+    margin-left:50px;
+}
+.trial-btn{
+    margin-right:50px;
+}
+.tablist{
+    margin-top: 14px;
+}
+#login-area,.trial-btn{
+    margin-top: 10px;
+}
+.ser-form{
+    clear: both;
+}
+.ser-form,.opt-product{
+    margin: 0 auto;
+    width:640px;
+}
+#footer{
+    margin-bottom: 30px;
+    width: 100%;
+    position: absolute;
+    bottom:0 ;
+}
